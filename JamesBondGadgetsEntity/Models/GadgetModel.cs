@@ -25,10 +25,10 @@ namespace JamesBondGadgetsEntity.Models
         public GadgetModel()
         {
             Id = -1;
-            Name = "Nothing";
-            Description = "Nothing Yet";
-            AppearsIn = "Nowhere";
-            WithThisActor = "With No one";
+            Name = "";
+            Description = "";
+            AppearsIn = "";
+            WithThisActor = "";
         }
 
         public GadgetModel(int id, string name, string description, string appearsIn, string withThisActor)

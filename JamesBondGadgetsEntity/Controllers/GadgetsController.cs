@@ -39,14 +39,14 @@ namespace JamesBondGadgetsEntity.Controllers
 
         public ActionResult Create()
         {
-            return View("GadgetForm");
+            return View("GadgetForm", new GadgetModel());
         }
 
         public ActionResult Edit(int id)
         {
-           
+            GadgetModel gadget = context.Gadgets.SingleOrDefault(g => g.Id == id);
 
-            return View("GadgetForm");
+            return View("GadgetForm", gadget);
         }
 
         public ActionResult Delete(int id)
@@ -63,9 +63,26 @@ namespace JamesBondGadgetsEntity.Controllers
         {
             //save to the database
 
-            
+            GadgetModel gadget = context.Gadgets.SingleOrDefault(g => g.Id == gadgetModel.Id);
 
-            return View("Details");
+
+            //edit
+            if(gadget != null)
+            {
+                gadget.Name = gadgetModel.Name;
+                gadget.Description = gadgetModel.Description;
+                gadget.AppearsIn = gadgetModel.AppearsIn;
+                gadget.WithThisActor = gadgetModel.WithThisActor;
+ 
+            }
+            else
+            {
+                context.Gadgets.Add(gadgetModel);
+            }
+
+            context.SaveChanges();
+
+            return View("Details", gadgetModel);
         }
 
 
